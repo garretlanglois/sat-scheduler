@@ -5,7 +5,7 @@ import json
 import os
 
 # Hardcoded path to the DLL
-DLL_PATH = r"C:\Users\gasla\Documents\sat-scheduler\json_parser_source\src\build\bin\Debug\commmand_parser.dll"
+DLL_PATH = r"C:\Users\gasla\Documents\sat-scheduler\json_parser_source\src\build\bin\Debug\command_parser.dll"
 
 # Load the shared library
 command_lib = ctypes.CDLL(DLL_PATH)
@@ -67,7 +67,7 @@ def parse_command_json(json_file_path):
 
 def main():
     # Hardcoded path to the JSON file
-    json_file_path = r"command_t.json"
+    json_file_path = r"C:\Users\gasla\Documents\sat-scheduler\json_parser_source\exampleCommand\command_t.json"
     
     # Parse the command
     command = parse_command_json(json_file_path)

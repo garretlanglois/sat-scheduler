@@ -2,3 +2,4 @@ node_modules
 
 json_parser_source/include
 package/rapidjson-master
+json_parser_source/src/rapidjson

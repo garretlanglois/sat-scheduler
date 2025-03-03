@@ -9,7 +9,7 @@
 using namespace rapidjson;
 using namespace std;
 
-const vector<string> requiredFields = {"commandId", "issuedBy", "issuedAt", "oprationn"};
+const vector<string> requiredFields = {"commandId", "issuedBy", "issuedAt", "operation"};
 
 //Constructor with default value for example deltaV passedd in
 Command::Command() : deltaV(0.0) {}
@@ -24,6 +24,8 @@ Command::~Command() = default;
 
 Command& Command::operator=(const Command&) = default;
 
+
+//Cpp implementation for easy use
 unique_ptr<Command> parseCommand(const string& jsonStr) {
     if (jsonStr.empty()) {
         throw invalid_argument("Empty JSON string");
@@ -89,6 +91,54 @@ unique_ptr<Command> parseCommand(const string& jsonStr) {
 
 }
 
+//C function so that it can be used by other software as a dll
+
+extern "C" COMMAND_API int parse_command(const char *json_str, command_t **cmd_out) {
+    if (!json_str || !cmd_out) {
+        return ERR_MISSING_FIELD;
+    }
+
+    try {
+        auto cppCommand = parseCommand(json_str);
+
+        command_t *cmd = (command_t*)(malloc(sizeof(command_t)));
+
+        if (!cmd) {
+            return ERR_MEMORY_ALLOCATION;
+        }
+
+        memset(cmd, 0, sizeof(command_t));
+
+        // Copy data from C++ object to C struct
+        cmd->commandId = strdup(cppCommand->commandId.c_str());
+        cmd->issuedBy = strdup(cppCommand->issuedBy.c_str());
+        cmd->issuedAt = strdup(cppCommand->issuedAt.c_str());
+        cmd->priority = cppCommand->priority.empty() ? nullptr : strdup(cppCommand->priority.c_str());
+        cmd->jwt = cppCommand->jwt.empty() ? nullptr : strdup(cppCommand->jwt.c_str());
+        cmd->operation = strdup(cppCommand->operation.c_str());
+        cmd->deltaV = cppCommand->deltaV;
+        cmd->axis = cppCommand->axis.empty() ? nullptr : strdup(cppCommand->axis.c_str());
+        
+        *cmd_out = cmd;
+        return SUCCESS;
+    } catch (const exception& e) {
+        return ERR_PARSE_FAILURE;
+    }
+
+}
+
+extern "C" COMMAND_API void free_memory(command_t *cmd) {
+    if (cmd) {
+        free(cmd->commandId);
+        free(cmd->issuedBy);
+        free(cmd->issuedAt);
+        free(cmd->priority);
+        free(cmd->jwt);
+        free(cmd->operation);
+        free(cmd->axis);
+        free(cmd);
+    }
+}
 
 string errorCodeToString(ErrorCode code) {
     switch (code) {

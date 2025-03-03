@@ -66,10 +66,21 @@ class COMMAND_API Command {
 
 unique_ptr<Command> parseCommand(const string& jsonStr);
 
-//Parse the command JSON string and returns 0 on success.
-extern COMMAND_API int parse_command(const char *json_str, command_t **cmd_out);
+//Interoperability functions for C shared library
 
-void free_memory(command_t *cmd);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+COMMAND_API int parse_command(const char *json_str, command_t **cmd_out);
+
+COMMAND_API void free_memory(command_t *cmd);
+
+string errorCodeToString(ErrorCode code);
+
+#ifdef __cplusplus 
+}
+#endif
 
 string errorCodeToString(ErrorCode code);
 
