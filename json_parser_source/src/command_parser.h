@@ -39,7 +39,7 @@ enum ErrorCode {
     ERR_MISSING_FIELD = 2,
     ERR_INVALID_TYPE = 3,
     ERR_PARSE_FAILURE = 4,
-    ERR_INVALID_COMMAND = 5,
+    ERR_MEMORY_ALLOCATION = 5
 };
 
 extern COMMAND_API const vector<string> requiredFields;
@@ -48,12 +48,29 @@ extern COMMAND_API const vector<string> requiredFields;
 class COMMAND_API Command {
     public:
         string commandId;
-
+        string issuedBy;
+        string issuedAt;
+        string priority;
+        string jwt;
+        string operation;
+        double deltaV;
+        string axis;
+    
+        //Declare constructors and special member functions
+        Command();
+        explicit Command(const string& jsonStr);
+        ~Command();
+        Command(Command&&) = default;
+        Command& operator=(const Command&);
 };
 
+unique_ptr<Command> parseCommand(const string& jsonStr);
+
 //Parse the command JSON string and returns 0 on success.
-int parse_command(const char *json_str, command_t **cmd_out);
+extern COMMAND_API int parse_command(const char *json_str, command_t **cmd_out);
 
 void free_memory(command_t *cmd);
+
+string errorCodeToString(ErrorCode code);
 
 #endif

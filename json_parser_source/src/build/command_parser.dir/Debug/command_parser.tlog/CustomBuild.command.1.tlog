@@ -1,0 +1,10 @@
+^C:\USERS\GASLA\DOCUMENTS\SAT-SCHEDULER\JSON_PARSER_SOURCE\SRC\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gasla/Documents/sat-scheduler/json_parser_source/src -BC:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build --check-stamp-file C:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\gasla\Documents\sat-scheduler\json_parser_source\src\build\CMakeFiles\ebbbc60db93803b50e3b45d83008ad85\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5F3C54A2-416A-3FE1-AE60-9F582A3CD1A2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,5 @@
+C:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build/CMakeFiles/command_parser.dir
+C:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build/CMakeFiles/command_parser_obj.dir
+C:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build/CMakeFiles/INSTALL.dir
+C:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/gasla/Documents/sat-scheduler/json_parser_source/src/build/CMakeFiles/ZERO_CHECK.dir
