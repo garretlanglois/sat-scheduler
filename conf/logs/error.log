@@ -1,0 +1,2 @@
+2025/03/19 11:00:49 [emerg] 6788#11304: CreateFile() "C:\Users\gasla\Documents\PRE-MOC-Scheduler\conf/conf/nginx.conf" failed (3: The system cannot find the path specified)
+2025/03/19 11:00:53 [emerg] 31228#8612: no "ssl_certificate" is defined for the "listen ... ssl" directive in C:\Users\gasla\Documents\PRE-MOC-Scheduler\conf/.\nginx.conf:13
